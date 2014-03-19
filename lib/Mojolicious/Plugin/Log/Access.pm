@@ -5,6 +5,11 @@ our $VERSION = '0.001';
 
 sub register {
   my ($self, $app) = @_;
+  $app->hook(after_dispatch => sub {
+    my $c = shift;
+    $app->log->info(sprintf '%s "%s" %s',
+        $c->tx->remote_address, $c->req->url->to_abs->path, $c->res->code);
+  });
 }
 
 1;
