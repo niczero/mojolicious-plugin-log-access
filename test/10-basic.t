@@ -10,7 +10,12 @@ get '/' => sub {
   $self->render(text => 'Hello Mojo!');
 };
 
+# All of this is borrowed from Mojolicious
 my $t = Test::Mojo->new;
-$t->get_ok('/')->status_is(200)->content_is('Hello Mojo!');
+my $log = '';
+my $cb = $t->app->log->on(message => sub { $log .= pop });
+$t->get_ok('//127.0.0.1/')->status_is(200)->content_is('Hello Mojo!');
+like $log, qr{127.0.0.1 \"/\" 200}, 'right message';
+$t->app->log->unsubscribe(message => $cb);
 
 done_testing();
