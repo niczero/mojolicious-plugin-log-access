@@ -7,6 +7,7 @@ MANIFEST.SKIP
 README.md
 test/00-load.t
 test/10-basic.t
+test/99-play.pl
 test/manifest.t
 test/pod.t
 test/version.t
