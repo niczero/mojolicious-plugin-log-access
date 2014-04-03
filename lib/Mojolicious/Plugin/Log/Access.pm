@@ -1,7 +1,7 @@
 package Mojolicious::Plugin::Log::Access;
 use Mojo::Base 'Mojolicious::Plugin';
 
-our $VERSION = 0.012;
+our $VERSION = 0.013;
 
 sub register {
   my ($self, $app) = @_;
@@ -47,6 +47,23 @@ mode, you can restrict the plugin for only that mode.
 Currently the log entry format is hard-coded.
 
   [info] <ip address> <page> <status code>
+
+=head1 TIMESTAMPS
+
+If you want custom timestamps (irrespective of access logging) this plugin
+combines seamlessly with L<Mojar::Log>.
+
+  # Mojolicious
+  use Mojar::Log;
+  $self->plugin('Log::Access');
+  $self->log(Mojar::Log->new(pattern => '%y%m%d %X'));
+
+  # Mojolicious::Lite
+  use Mojar::Log;
+  plugin 'Log::Access';
+  app->log(Mojar::Log->new(pattern => '%y%m%d %X'));
+
+This is illustrated in test/99-play.t
 
 =head1 METHODS
 

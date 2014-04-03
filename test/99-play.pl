@@ -1,5 +1,6 @@
 use Mojolicious::Lite;
 
+use Mojar::Log;
 plugin 'Log::Access';
 
 get '/' => sub {
@@ -7,6 +8,7 @@ get '/' => sub {
   $self->render('index');
 };
 
+app->log(Mojar::Log->new(pattern => '%y%m%d %X'));
 app->start;
 __DATA__
 
