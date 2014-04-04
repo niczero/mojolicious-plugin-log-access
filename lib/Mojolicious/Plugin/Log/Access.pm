@@ -1,7 +1,7 @@
 package Mojolicious::Plugin::Log::Access;
 use Mojo::Base 'Mojolicious::Plugin';
 
-our $VERSION = 0.013;
+our $VERSION = 0.014;
 
 sub register {
   my ($self, $app) = @_;
@@ -29,7 +29,7 @@ Mojolicious::Plugin::Log::Access - Provide access logging
 
 =head1 DESCRIPTION
 
-L<Mojolicious::Plugin::Log::Access> is a L<Mojolicious> plugin for adding access
+Mojolicious::Plugin::Log::Access is a L<Mojolicious> plugin for adding access
 logging to your web application.
 
 =head1 USAGE
@@ -63,7 +63,7 @@ combines seamlessly with L<Mojar::Log>.
   plugin 'Log::Access';
   app->log(Mojar::Log->new(pattern => '%y%m%d %X'));
 
-This is illustrated in test/99-play.t
+This is illustrated in C<test/99-play.pl>.
 
 =head1 METHODS
 
@@ -101,4 +101,4 @@ the terms of the Artistic License version 2.0.
 
 =head1 SEE ALSO
 
-L<Mojolicious>, L<Mojolicious::Guides>, L<http://mojolicio.us>.
+L<Mojar::Log>, L<Mojolicious>, L<Mojolicious::Guides>, L<http://mojolicio.us>.
