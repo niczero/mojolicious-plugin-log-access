@@ -13,7 +13,6 @@ WriteMakefile(
   META_MERGE   => {
     requires  => {perl => 5.010001},
     resources => {
-      homepage    => 'http://niczero.github.com/mojolicious-plugin-log-access',
       license     => 'http://www.opensource.org/licenses/artistic-license-2.0',
       repository  => 'http://github.com/niczero/mojolicious-plugin-log-access',
       bugtracker  => 'http://github.com/niczero/mojolicious-plugin-log-access/issues'
