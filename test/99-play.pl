@@ -1,21 +1,21 @@
 use Mojolicious::Lite;
 
-use Mojar::Log;
 plugin 'Log::Access';
+plugin 'Log::Timestamp' => {pattern => '%y%m%d %X'};
 
 get '/' => sub {
   my $self = shift;
   $self->render('index');
 };
 
-app->log(Mojar::Log->new(pattern => '%y%m%d %X'));
-app->start;
+app->secrets(['zy4uCwWYrd'])->start;
 __DATA__
 
 @@ index.html.ep
 % layout 'default';
-% title 'Welcome';
-Welcome to the Mojolicious real-time web framework!
+% title 'Sample';
+See what has been logged.  If there is no log file then the log entries
+have gone to STDERR.
 
 @@ layouts/default.html.ep
 <!DOCTYPE html>

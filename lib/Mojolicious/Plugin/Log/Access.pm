@@ -1,7 +1,7 @@
 package Mojolicious::Plugin::Log::Access;
 use Mojo::Base 'Mojolicious::Plugin';
 
-our $VERSION = 0.021;
+our $VERSION = 0.022;
 
 sub register {
   my ($self, $app) = @_;
@@ -44,24 +44,25 @@ mode, you can restrict the plugin for only that mode.
     my $self = shift;
     $self->plugin('Log::Access') if $self->mode eq 'production';
 
-Currently the log entry format is hard-coded.
+The log entry is deliberately simple.
 
   [info] <ip address> <page> <status code>
+
+If you need more, L<Mojolicious::Plugin::AccessLog> supports Apache-style
+formats.
 
 =head1 TIMESTAMPS
 
 If you want custom timestamps (irrespective of access logging) this plugin
-combines seamlessly with L<Mojar::Log>.
+combines seamlessly with L<Mojolicous::Plugin::Log::Timestamp>.
 
   # Mojolicious
-  use Mojar::Log;
   $self->plugin('Log::Access');
-  $self->log(Mojar::Log->new(pattern => '%y%m%d %X'));
+  $self->plugin('Log::Timestamp' => {pattern => '%y%m%d %X'});
 
   # Mojolicious::Lite
-  use Mojar::Log;
   plugin 'Log::Access';
-  app->log(Mojar::Log->new(pattern => '%y%m%d %X'));
+  plugin 'Log::Timestamp' => {pattern => '%y%m%d %X'};
 
 This is illustrated in C<test/99-play.pl>.
 
@@ -101,4 +102,5 @@ the terms of the Artistic License version 2.0.
 
 =head1 SEE ALSO
 
-L<Mojar::Log>, L<Mojolicious>, L<Mojolicious::Guides>, L<http://mojolicio.us>.
+L<Mojolicous::Plugin::AccessLog>, L<Mojar::Log>, L<Mojolicious::Guides>,
+L<http://mojolicio.us>.
